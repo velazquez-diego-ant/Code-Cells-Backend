@@ -1,4 +1,4 @@
-package com.cells.code.InstaRama;
+package cells.code.InstaRama.com;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
