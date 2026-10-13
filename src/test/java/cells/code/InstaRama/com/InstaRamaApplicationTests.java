@@ -1,4 +1,4 @@
-package com.cells.code.InstaRama;
+package cells.code.InstaRama.com;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
