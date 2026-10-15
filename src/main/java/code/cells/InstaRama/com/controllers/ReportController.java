@@ -1,4 +1,4 @@
-package controller;
+package code.cells.InstaRama.com.controllers;
 
 import lombok.AllArgsConstructor;
 import code.cells.InstaRama.com.dtos.ReportRequest;
