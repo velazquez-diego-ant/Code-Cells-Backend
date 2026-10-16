@@ -3,7 +3,9 @@ package code.cells.InstaRama.com.services;
 import code.cells.InstaRama.com.dtos.PostRequest;
 import code.cells.InstaRama.com.exceptions.ResourceNotFoundException;
 import code.cells.InstaRama.com.models.Post;
+import code.cells.InstaRama.com.models.User;
 import code.cells.InstaRama.com.repository.PostRepository;
+import code.cells.InstaRama.com.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class PostService {
     private PostRepository postRepository;
-//    private UserRepository userRepository;
+    private UserRepository userRepository;
 //    private KingdomRepository kingdomRepository;
 
     public List<Post> getAllPost(){
@@ -31,13 +33,22 @@ public class PostService {
     // Falta integración con kingdomId y userId
     public Post createPostByUser(Long userId, PostRequest postRequest){
         // "Verificar que el usuario exista"
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("El User con Id:"+userId+" NO existe")
+        );
+        //Creamos la publicacion
         Post post = new Post();
         post.setTitle(postRequest.title());
         post.setPhoto(postRequest.photo());
         post.setDescription(postRequest.description());
         post.setDatetime(postRequest.datetime());
+        //Guardamos la publicacion
         postRepository.save(post);
-        // Actualizar la lista de publicaciones del usuario y la lista de publiaciones al reino
+        // Actualizar la lista de publicaciones del usuario
+//        user.ge
+
+
+
         return post;
     }
 
