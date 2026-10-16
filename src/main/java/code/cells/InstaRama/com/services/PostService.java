@@ -9,14 +9,22 @@ import code.cells.InstaRama.com.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import code.cells.InstaRama.com.models.Kingdom;
+import code.cells.InstaRama.com.repository.KingdomRepository;
+
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class PostService {
     private PostRepository postRepository;
+
+//    private UserRepository userRepository;
+private KingdomRepository kingdomRepository;
+
     private UserRepository userRepository;
 //    private KingdomRepository kingdomRepository;
+
 
     public List<Post> getAllPost(){
         List<Post> posts = postRepository.findAll();
@@ -29,6 +37,20 @@ public class PostService {
                 () -> new ResourceNotFoundException("No se encontró la publicación con el id: " + postId)
         );
     }
+
+    // Falta integración con userId
+    public Post createPostByUser(Long userId, PostRequest postRequest){
+        // "Verificar que el usuario exista"
+        //integración con kingdomId
+        Kingdom kingdom = kingdomRepository
+                .findById(postRequest.kingdomId())
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Kingdom not found with id: "
+                                        + postRequest.kingdomId()
+                        )
+                );
+
 
     public List<Post> getAllByUserId(Long userId){
         //ver si existe el usuario
@@ -44,12 +66,17 @@ public class PostService {
                 () -> new ResourceNotFoundException("El User con Id:"+userId+" NO existe")
         );
         //Creamos la publicacion
+ origin/main
         Post post = new Post();
         post.setTitle(postRequest.title());
         post.setPhoto(postRequest.photo());
         post.setDescription(postRequest.description());
         post.setDatetime(postRequest.datetime());
+ HEAD
+        post.setKingdom(kingdom);
+
         //Guardamos la publicacion
+ origin/main
         postRepository.save(post);
         // Actualizar la lista de publicaciones del usuario
         user.getPost().add(post);
@@ -59,6 +86,12 @@ public class PostService {
         return post;
     }
 
+HEAD
+
+
+    // Falta integración con kingdomId y userId
+
+ origin/main
     public Post updatePostById(Long postId, PostRequest postRequest){
         Post previousPost = getPostById(postId);
         if(postRequest.title() != null) previousPost.setTitle(postRequest.title());

@@ -16,5 +16,7 @@ public record PostRequest(
         String description,
 
         Date datetime
+        @NotNull
+        Long kingdomId
 ) {
 }
