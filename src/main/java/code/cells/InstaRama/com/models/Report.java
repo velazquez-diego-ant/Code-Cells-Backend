@@ -20,13 +20,13 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "entity_type", length = 20)
+    @Column(name = "entity_type", nullable = false, length = 20)
     private String entityType;
 
     @Column(nullable = false, length = 50)
     private String type;
 
-    @Column(name = "reference_link", length = 2048)
+    @Column(name = "reference_link", nullable = false, length = 2048)
     private String referenceLink;
 
     @Column(nullable = false)
@@ -39,16 +39,6 @@ public class Report {
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    @JsonIgnore
-    private Post post;
-
-    @ManyToOne
-    @JoinColumn(name = "comment_id")
-    @JsonIgnore
-    private Comment comment;
 
     @PrePersist
     public void prePersist() {
