@@ -36,6 +36,7 @@ public class User {
     @Column(nullable = false, length = 50)
     private String role;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Post> post;
 }

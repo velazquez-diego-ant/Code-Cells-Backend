@@ -14,6 +14,7 @@ import java.util.Date;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idpost")
     private Long id;
 
     @Column
@@ -26,12 +27,12 @@ public class Post {
     @Column
     private String description;
 
-    @Column
+    @Column(name = "date", nullable = false)
     private Date datetime;
 
 //     Relación con user
     @ManyToOne
-    @JoinColumn (name= "iduser" , nullable = false)
+    @JoinColumn (name= "user_iduser" , nullable = false)
     @JsonIgnore
     private User user;
 

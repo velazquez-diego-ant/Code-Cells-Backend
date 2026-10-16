@@ -49,11 +49,10 @@ public class PostService {
         post.setPhoto(postRequest.photo());
         post.setDescription(postRequest.description());
         post.setDatetime(postRequest.datetime());
+        // El lado @ManyToOne (Post.user) es el que guarda la FK user_iduser
+        post.setUser(user);
         //Guardamos la publicacion
         postRepository.save(post);
-        // Actualizar la lista de publicaciones del usuario
-        user.getPost().add(post);
-        userRepository.save(user);
         //Actualizar lista publicaciones en los reinos
         //FALTA
         return post;
@@ -64,7 +63,8 @@ public class PostService {
         if(postRequest.title() != null) previousPost.setTitle(postRequest.title());
         if (postRequest.photo() != null) previousPost.setPhoto(postRequest.photo());
         if (postRequest.description() != null) previousPost.setDescription(postRequest.description());
-        return previousPost;
+        if (postRequest.datetime() != null) previousPost.setDatetime(postRequest.datetime());
+        return postRepository.save(previousPost);
     }
 
     public Post deletePostById(Long postId){

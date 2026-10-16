@@ -21,12 +21,12 @@ public class PostController {
     private final PostService postService;
     private final UserService userService;
 
-    @GetMapping(path = "post") // http://localhost:8080/api/post
+    @GetMapping(path = "posts") // http://localhost:8080/api/posts
     public ResponseEntity<List<Post>> getAllPost(){
         return ResponseEntity.ok(postService.getAllPost());
     }
 
-    @GetMapping(path = "post/{postId}")
+    @GetMapping(path = "posts/{postId}")
     public ResponseEntity<Post> getPostById(@PathVariable("postId") Long postId){
         Post post = postService.getPostById(postId);
         return ResponseEntity.ok(post);
@@ -49,13 +49,13 @@ public class PostController {
         return ResponseEntity.created(location).body(post);
     }
 
-    @PutMapping(path = "post/{postId}")
-    public ResponseEntity<Post> updatePostById(@PathVariable("postId") Long userId, @RequestBody PostRequest postRequest){
-        Post updatedPost = postService.updatePostById(userId, postRequest);
+    @PutMapping(path = "posts/{postId}")
+    public ResponseEntity<Post> updatePostById(@PathVariable("postId") Long postId, @RequestBody PostRequest postRequest){
+        Post updatedPost = postService.updatePostById(postId, postRequest);
         return ResponseEntity.ok(updatedPost);
     }
 
-    @DeleteMapping(path = "post/{postId}")
+    @DeleteMapping(path = "posts/{postId}")
     public ResponseEntity<Post> deletePostById(@PathVariable("postId")Long postId){
         Post deletedPost = postService.deletePostById(postId);
         return ResponseEntity.ok(deletedPost);
