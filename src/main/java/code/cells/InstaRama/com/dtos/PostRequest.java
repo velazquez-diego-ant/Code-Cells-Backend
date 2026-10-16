@@ -13,6 +13,8 @@ public record PostRequest(
         byte[] photo,
 
         @NotBlank
-        String description
+        String description,
+
+        Date datetime
 ) {
 }
