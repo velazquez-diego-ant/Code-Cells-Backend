@@ -1,5 +1,6 @@
 package code.cells.InstaRama.com.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,5 +33,9 @@ public class User {
 
     @Column(nullable = false, length = 50)
     private String role;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private Post post;
+
 
 }
