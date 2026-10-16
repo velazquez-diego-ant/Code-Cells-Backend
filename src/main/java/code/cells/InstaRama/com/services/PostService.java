@@ -30,7 +30,14 @@ public class PostService {
         );
     }
 
-    // Falta integración con kingdomId y userId
+    public List<Post> getAllByUserId(Long userId){
+        //ver si existe el usuario
+        if (!userRepository.existsById(userId))
+            throw new ResourceNotFoundException("Usuario con el id: " + userId + " no encontrado");
+        return postRepository.findAllByUser_Id(userId);
+    }
+
+    // Falta integración con kingdom
     public Post createPostByUser(Long userId, PostRequest postRequest){
         // "Verificar que el usuario exista"
         User user = userRepository.findById(userId).orElseThrow(
@@ -45,14 +52,13 @@ public class PostService {
         //Guardamos la publicacion
         postRepository.save(post);
         // Actualizar la lista de publicaciones del usuario
-//        user.ge
-
-
-
+        user.getPost().add(post);
+        userRepository.save(user);
+        //Actualizar lista publicaciones en los reinos
+        //FALTA
         return post;
     }
 
-    // Falta integración con kingdomId y userId
     public Post updatePostById(Long postId, PostRequest postRequest){
         Post previousPost = getPostById(postId);
         if(postRequest.title() != null) previousPost.setTitle(postRequest.title());

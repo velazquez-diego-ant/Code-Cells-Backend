@@ -38,7 +38,4 @@ public class User {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Post> post;
-
-
-
 }
