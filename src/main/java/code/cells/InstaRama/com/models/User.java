@@ -1,0 +1,36 @@
+package code.cells.InstaRama.com.models;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "user")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class User {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "iduser")
+    private Long id;
+
+    @Column(nullable = false, length = 50)
+    private String name;
+
+    @Column(name = "password_hash", nullable = false, length = 250)
+    private String password;
+
+    @Column(nullable = false, length = 100)
+    private String email;
+
+    @Column(name = "account_status", nullable = false)
+    private Integer accountStatus;
+
+    @Column(nullable = false, length = 50)
+    private String role;
+
+}
