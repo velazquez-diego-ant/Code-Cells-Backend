@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "user")
 @AllArgsConstructor
@@ -35,7 +37,8 @@ public class User {
     private String role;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private Post post;
+    private List<Post> post;
+
 
 
 }
