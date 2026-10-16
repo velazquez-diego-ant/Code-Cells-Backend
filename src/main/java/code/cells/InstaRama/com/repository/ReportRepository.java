@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface ReportRepository extends JpaRepository<Report, Long> {
     List<Report> findByUserId(Long userId);
-    List<Report> findByPostId(Long postId);
-    List<Report> findByCommentId(Long commentId);
+    List<Report> findByEntityTypeAndReferenceLink(String entityType, String referenceLink);
     List<Report> findByStatus(String status);
 }
