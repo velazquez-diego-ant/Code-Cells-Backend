@@ -1,5 +1,6 @@
 package code.cells.InstaRama.com.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,10 +29,12 @@ public class Post {
     @Column
     private Date datetime;
 
-    // Relación con user
-//    @ManyToOne
-//    @JoinColumn
-//    private User user;
+//     Relación con user
+    @ManyToOne
+    @JoinColumn (name= "iduser" , nullable = false)
+    @JsonIgnore
+    private User user;
+
 
     // Relación POST -> KINGDOM
     @ManyToOne

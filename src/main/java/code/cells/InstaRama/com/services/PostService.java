@@ -3,7 +3,9 @@ package code.cells.InstaRama.com.services;
 import code.cells.InstaRama.com.dtos.PostRequest;
 import code.cells.InstaRama.com.exceptions.ResourceNotFoundException;
 import code.cells.InstaRama.com.models.Post;
+import code.cells.InstaRama.com.models.User;
 import code.cells.InstaRama.com.repository.PostRepository;
+import code.cells.InstaRama.com.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +18,12 @@ import java.util.List;
 @AllArgsConstructor
 public class PostService {
     private PostRepository postRepository;
+
 //    private UserRepository userRepository;
 private KingdomRepository kingdomRepository;
+
+    private UserRepository userRepository;
+//    private KingdomRepository kingdomRepository;
 
 
     public List<Post> getAllPost(){
@@ -45,20 +51,47 @@ private KingdomRepository kingdomRepository;
                         )
                 );
 
+
+    public List<Post> getAllByUserId(Long userId){
+        //ver si existe el usuario
+        if (!userRepository.existsById(userId))
+            throw new ResourceNotFoundException("Usuario con el id: " + userId + " no encontrado");
+        return postRepository.findAllByUser_Id(userId);
+    }
+
+    // Falta integración con kingdom
+    public Post createPostByUser(Long userId, PostRequest postRequest){
+        // "Verificar que el usuario exista"
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("El User con Id:"+userId+" NO existe")
+        );
+        //Creamos la publicacion
+ origin/main
         Post post = new Post();
         post.setTitle(postRequest.title());
         post.setPhoto(postRequest.photo());
         post.setDescription(postRequest.description());
         post.setDatetime(postRequest.datetime());
+ HEAD
         post.setKingdom(kingdom);
+
+        //Guardamos la publicacion
+ origin/main
         postRepository.save(post);
-        // Actualizar la lista de publicaciones del usuario y la lista de publiaciones al reino
+        // Actualizar la lista de publicaciones del usuario
+        user.getPost().add(post);
+        userRepository.save(user);
+        //Actualizar lista publicaciones en los reinos
+        //FALTA
         return post;
     }
 
+HEAD
 
 
     // Falta integración con kingdomId y userId
+
+ origin/main
     public Post updatePostById(Long postId, PostRequest postRequest){
         Post previousPost = getPostById(postId);
         if(postRequest.title() != null) previousPost.setTitle(postRequest.title());
