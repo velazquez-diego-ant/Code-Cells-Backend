@@ -7,41 +7,33 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
+//Indicamos que es una entidad
+//Y agregamos los constructores, setters y getters
 @Entity
-@Table(name = "comments")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class Comment {
-
+    //Llave primaria
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idcomments")
     private Long id;
 
-    @Column(name = "message", nullable = false, columnDefinition = "TEXT")
-    private String content;
+    //mensaje
+    @Column(columnDefinition = "TEXT")
+    private String message;
 
-    @Column(nullable = false)
-    private LocalDateTime date;
-
+    //Relación con tabla user
+    //En este caso, Comment depende de User
     @ManyToOne
-    @JoinColumn(name = "user_iduser", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private User user;
 
+    //Relación con tabla post
     @ManyToOne
     @JoinColumn(name = "post_id", nullable = false)
     @JsonIgnore
     private Post post;
-
-    @PrePersist
-    public void prePersist() {
-        if (this.date == null) {
-            this.date = LocalDateTime.now();
-        }
-    }
 }
