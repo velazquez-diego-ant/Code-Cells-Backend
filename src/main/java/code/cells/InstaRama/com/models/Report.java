@@ -18,10 +18,14 @@ public class Report {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idreport")
     private Long id;
 
     @Column(name = "entity_type", nullable = false, length = 20)
     private String entityType;
+
+    @Column(name = "entity_id", nullable = false)
+    private Long entityId;
 
     @Column(nullable = false, length = 50)
     private String type;
@@ -36,7 +40,7 @@ public class Report {
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_iduser", nullable = false)
     @JsonIgnore
     private User user;
 

@@ -1,5 +1,6 @@
 package code.cells.InstaRama.com.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idpost")
     private Long id;
 
     @Column
@@ -25,13 +27,15 @@ public class Post {
     @Column
     private String description;
 
-    @Column
+    @Column(name = "date", nullable = false)
     private Date datetime;
 
-    // Relación con user
-//    @ManyToOne
-//    @JoinColumn
-//    private User user;
+//     Relación con user
+    @ManyToOne
+    @JoinColumn (name= "user_iduser" , nullable = false)
+    @JsonIgnore
+    private User user;
+
 
     // Relación con kingdom
 //    @ManyToMany

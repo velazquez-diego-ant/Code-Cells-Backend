@@ -63,6 +63,7 @@ public class ReportService {
         //? 3.- Mapear el dto. El link lo arma el servidor; el status nace en PENDING (@PrePersist).
         Report report = new Report();
         report.setEntityType(reportRequest.entityType());
+        report.setEntityId(reportRequest.entityId());
         report.setReferenceLink(buildReferenceLink(reportRequest.entityType(), reportRequest.entityId()));
         report.setType(reportRequest.type());
         report.setUser(user);

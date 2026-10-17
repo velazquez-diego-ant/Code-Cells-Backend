@@ -5,9 +5,9 @@ public class CategoryRequest {
     private Long categoryId;
     private String categoryName;
     private String kingdom;
-    public CategoryDTO() {
+    public CategoryRequest() {
     }
-    public CategoryDTO(
+    public CategoryRequest(
             Long categoryId,
             String categoryName,
             String kingdom
