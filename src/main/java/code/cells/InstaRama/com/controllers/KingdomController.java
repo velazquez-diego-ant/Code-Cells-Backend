@@ -1,7 +1,7 @@
 package code.cells.InstaRama.com.controllers;
 import code.cells.InstaRama.com.dtos.KingdomRequest;
 import code.cells.InstaRama.com.models.Kingdom;
-import code.cells.InstaRama.com.services.CategoryService;
+import code.cells.InstaRama.com.services.KingdomService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,8 @@ import java.util.List;
 public class KingdomController {
 
     @Autowired
-    private CategoryService.KingdomService kingdomService;
+    private
+    KingdomService kingdomService;
 
     @GetMapping
     public ResponseEntity<List<Kingdom>> getAllKingdoms() {
