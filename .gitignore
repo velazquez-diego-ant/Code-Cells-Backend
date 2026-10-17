@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+#Nombre archivo donde va el password (contraseña) de la BD
+application-local.properties
+
