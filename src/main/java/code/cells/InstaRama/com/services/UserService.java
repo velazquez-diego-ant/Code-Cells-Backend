@@ -38,9 +38,11 @@ public class UserService {
         user.setName(registerRequest.name());
         user.setPassword(registerRequest.password());
         user.setAccountStatus(1);
-        user.setRole(registerRequest.role());
+        user.setRole("USER"); 
+        
         return userRepository.save(user);
     }
+
     public User loginUser(LoginRequest loginRequest){
         User user = userRepository.findByEmail(loginRequest.email())
                 .filter(u -> u.getPassword().equals(loginRequest.password()))
