@@ -7,6 +7,8 @@ build/
 
 # Ignorar credenciales locales de la base de datos
 src/main/resources/application.properties
+src/test/java/com/example/categorias/CategoriasApplicationTests.java
+
 
 ### STS ###
 .apt_generated
@@ -39,6 +41,4 @@ out/
 ### VS Code ###
 .vscode/
 
-#Nombre archivo donde va el password (contraseña) de la BD
-application-local.properties
 
