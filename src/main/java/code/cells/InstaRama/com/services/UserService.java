@@ -38,13 +38,9 @@ public class UserService {
         user.setName(registerRequest.name());
         user.setPassword(registerRequest.password());
         user.setAccountStatus(1);
-        
-        // 👇 AQUÍ ASIGNAMOS EL ROL POR DEFECTO 👇
-        user.setRole("USER"); 
-        
+        user.setRole(registerRequest.role());
         return userRepository.save(user);
     }
-
     public User loginUser(LoginRequest loginRequest){
         User user = userRepository.findByEmail(loginRequest.email())
                 .filter(u -> u.getPassword().equals(loginRequest.password()))
