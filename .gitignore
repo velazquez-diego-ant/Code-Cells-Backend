@@ -5,6 +5,9 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+# Ignorar credenciales locales de la base de datos
+src/main/resources/templates/application.properties
+
 ### STS ###
 .apt_generated
 .classpath
