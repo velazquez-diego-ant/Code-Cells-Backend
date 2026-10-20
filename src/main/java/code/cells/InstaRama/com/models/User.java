@@ -24,6 +24,8 @@ public class User {
     @Column(nullable = false, length = 50)
     private String name;
 
+    //Nunca se manda en las respuestas de la API
+    @JsonIgnore
     @Column(name = "password_hash", nullable = false, length = 250)
     private String password;
 
