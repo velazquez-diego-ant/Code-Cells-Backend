@@ -9,6 +9,7 @@ import code.cells.InstaRama.com.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -18,9 +19,8 @@ public class PostService {
     private UserRepository userRepository;
 //    private KingdomRepository kingdomRepository;
 
+    //Si no hay publicaciones se regresa una lista vacía (no es un error)
     public List<Post> getAllPost(){
-        List<Post> posts = postRepository.findAll();
-        if (posts.isEmpty()) throw new ResourceNotFoundException("No hay publicaciones.");
         return postRepository.findAll();
     }
 
@@ -48,7 +48,8 @@ public class PostService {
         post.setTitle(postRequest.title());
         post.setPhoto(postRequest.photo());
         post.setDescription(postRequest.description());
-        post.setDatetime(postRequest.datetime());
+        //Si no mandan la fecha se usa la actual (la columna date no acepta nulos)
+        post.setDatetime(postRequest.datetime() != null ? postRequest.datetime() : new Date());
         // El lado @ManyToOne (Post.user) es el que guarda la FK user_iduser
         post.setUser(user);
         //Guardamos la publicacion
@@ -60,9 +61,10 @@ public class PostService {
 
     public Post updatePostById(Long postId, PostRequest postRequest){
         Post previousPost = getPostById(postId);
-        if(postRequest.title() != null) previousPost.setTitle(postRequest.title());
-        if (postRequest.photo() != null) previousPost.setPhoto(postRequest.photo());
-        if (postRequest.description() != null) previousPost.setDescription(postRequest.description());
+        //Solo se cambian los campos que llegan con valor (no se permite dejar título o descripción en blanco)
+        if (postRequest.title() != null && !postRequest.title().isBlank()) previousPost.setTitle(postRequest.title());
+        if (postRequest.photo() != null && postRequest.photo().length > 0) previousPost.setPhoto(postRequest.photo());
+        if (postRequest.description() != null && !postRequest.description().isBlank()) previousPost.setDescription(postRequest.description());
         if (postRequest.datetime() != null) previousPost.setDatetime(postRequest.datetime());
         return postRepository.save(previousPost);
     }

@@ -8,14 +8,14 @@ import jakarta.validation.constraints.Size;
 import java.util.Date;
 
 public record PostRequest(
-        @NotBlank
+        @NotBlank(message = "El título es obligatorio")
         String title,
 
-        @NotNull
-        @Size(min = 1)
+        @NotNull(message = "La foto es obligatoria")
+        @Size(min = 1, message = "La foto es obligatoria")
         byte[] photo,
 
-        @NotBlank
+        @NotBlank(message = "La descripción es obligatoria")
         String description,
 
         Date datetime
