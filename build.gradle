@@ -39,5 +39,5 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 springBoot {
-	mainClass = 'com.example.categorias.CategoriasApplication'
+	mainClass = 'code.cells.InstaRama.com.InstaRamaApplication'
 }
