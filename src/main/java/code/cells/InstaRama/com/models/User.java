@@ -42,7 +42,7 @@ public class User {
     @JsonIgnore
     private List<Post> post;
 
-    //Al borrar la cuenta se borran sus comentarios y reportes (si no, las llaves foráneas lo impiden)
+    //Al borrar la cuenta se borran sus comentarios, reportes y formularios de contacto (si no, las llaves foráneas lo impiden)
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Comment> comments;
@@ -50,4 +50,8 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Report> reports;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<ContactForm> contactForms;
 }
