@@ -24,6 +24,8 @@ public class User {
     @Column(nullable = false, length = 50)
     private String name;
 
+    //Nunca se manda en las respuestas de la API
+    @JsonIgnore
     @Column(name = "password_hash", nullable = false, length = 250)
     private String password;
 
@@ -39,4 +41,17 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Post> post;
+
+    //Al borrar la cuenta se borran sus comentarios, reportes y formularios de contacto (si no, las llaves foráneas lo impiden)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Report> reports;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<ContactForm> contactForms;
 }

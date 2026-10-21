@@ -1,8 +1,9 @@
 package code.cells.InstaRama.com.controllers;
 import code.cells.InstaRama.com.dtos.KingdomRequest;
 import code.cells.InstaRama.com.models.Kingdom;
-import code.cells.InstaRama.com.service.KingdomService;
+import code.cells.InstaRama.com.services.KingdomService;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +13,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/kingdoms")
-@CrossOrigin(origins = "*")
+@AllArgsConstructor
 public class KingdomController {
 
     @Autowired
-    private KingdomService kingdomService;
+    private
+    KingdomService kingdomService;
 
     @GetMapping
     public ResponseEntity<List<Kingdom>> getAllKingdoms() {

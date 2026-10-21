@@ -5,6 +5,7 @@ import code.cells.InstaRama.com.models.Post;
 import code.cells.InstaRama.com.models.User;
 import code.cells.InstaRama.com.services.PostService;
 import code.cells.InstaRama.com.services.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,7 @@ public class PostController {
     }
 
     @PostMapping(path = "user/{userId}/posts")
-    public ResponseEntity<Post> createPost(@PathVariable("userId") Long userId, @RequestBody PostRequest postRequest){
+    public ResponseEntity<Post> createPost(@PathVariable("userId") Long userId, @Valid @RequestBody PostRequest postRequest){
         Post post = postService.createPostByUser(userId, postRequest);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")

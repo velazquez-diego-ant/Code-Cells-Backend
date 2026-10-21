@@ -1,6 +1,7 @@
 package code.cells.InstaRama.com.services;
 
 import code.cells.InstaRama.com.dtos.CommentRequest;
+import code.cells.InstaRama.com.exceptions.ForbiddenActionException;
 import code.cells.InstaRama.com.exceptions.ResourceNotFoundException;
 import code.cells.InstaRama.com.models.Comment;
 import code.cells.InstaRama.com.models.Post;
@@ -23,7 +24,7 @@ public class CommentService {
 
     private void verifyCommentOwner(Comment comment, Long userId){
         if(!comment.getUser().getId().equals(userId)){
-            throw new IllegalArgumentException(
+            throw new ForbiddenActionException(
                     "No tienes permiso para realizar esta acción."
             );
         }

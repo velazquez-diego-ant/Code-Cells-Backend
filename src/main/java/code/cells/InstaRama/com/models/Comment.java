@@ -1,6 +1,7 @@
 package code.cells.InstaRama.com.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,4 +37,15 @@ public class Comment {
     @JoinColumn(name = "post_id", nullable = false)
     @JsonIgnore
     private Post post;
+
+    //Exponemos solo el id y el nombre del autor (no todo el User, que trae el password)
+    @JsonProperty("userId")
+    public Long getUserId() {
+        return user != null ? user.getId() : null;
+    }
+
+    @JsonProperty("userName")
+    public String getUserName() {
+        return user != null ? user.getName() : null;
+    }
 }
