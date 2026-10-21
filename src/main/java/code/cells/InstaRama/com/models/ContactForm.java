@@ -24,6 +24,8 @@ public class ContactForm {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_iduser", referencedColumnName = "iduser")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private User user;
 
     @Column(name = "email", length = 150)
