@@ -39,7 +39,7 @@
  * URL base de la API.
  * @constant {string}
  */
-const API_URL = "/api";
+const API_URL = "http://localhost:8080/api";
 
 // ==========================================
 // MANEJO DE RESPUESTAS

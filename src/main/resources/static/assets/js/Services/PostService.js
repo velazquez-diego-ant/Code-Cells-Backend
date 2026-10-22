@@ -1,4 +1,4 @@
-const BASE_URL = "/api";
+const BASE_URL = "http://localhost:8080/api";
 
 
 //get all posts
