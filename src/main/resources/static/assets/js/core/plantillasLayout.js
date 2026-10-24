@@ -163,7 +163,6 @@ export const header_gestionarPublicaciones = `
                     <a class="nav-link btn-nav fw-semibold" href="./feed.html">Explorar</a>
                     <a class="nav-link btn-nav" href="../pages/acercaDe.html">Acerca de</a>
                     <a class="nav-link btn-nav" href="../pages/contacto.html">Contacto</a>
-                    <a class="nav-link btn-nav" href="./perfil.html">Perfil</a>
                     <a class="nav-link btn-nav" href="../index.html" data-cerrar-sesion>Cerrar sesión</a>
                 </div>
 
@@ -212,7 +211,7 @@ export const header_login = `
     <!--TODO HEADER -->
     <header class="header-instarama py-3">
         <div class="container-fluid d-flex justify-content-end align-items-center h-100">
-            <a href="registro.html" class="btn-iniciar">Registrarse</a>
+            <a href="registro.html" class="btn-registrar">Registrarse</a>
         </div>
     </header>
 `;

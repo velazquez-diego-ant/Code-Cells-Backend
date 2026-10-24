@@ -425,7 +425,7 @@ function ocultarCargando() {
 }
 
 // Tiempo mínimo que se muestra la animación: un día completo del girasol (--ir-dia en styles.css)
-const DURACION_MINIMA_CARGA = 4000;
+const DURACION_MINIMA_CARGA = 2000;
 const esperar = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // GENERAR TODAS LAS PUBLICACIONES
