@@ -167,7 +167,7 @@ function adaptarPost(post) {
 }
 
 // Tiempo mínimo de la animación de carga: una vuelta de la nutria (--nutria-vuelta en el CSS)
-const DURACION_MINIMA_CARGA = 3000;
+const DURACION_MINIMA_CARGA = 1500;
 const esperar = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function cargarPublicaciones() {
