@@ -69,6 +69,48 @@
 </aside>
 
 <main class="ir-main">
+  <section class="ir-notif">
+    <div class="ir-notif-encabezado d-flex justify-content-between align-items-center">
+      <div class="ir-notif-titulo d-flex align-items-center gap-2">
+        <svg class="ir-notif-icono" viewBox="0 0 24 24" width="32" height="32" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+          <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+        </svg>
+        <h1 class="ir-notif-texto">Notificaciones</h1>
+      </div>
+
+      <button class="ir-notif-btn" type="button">
+        Marcar todo como leído
+      </button>
+    </div>
+
+    <div class="ir-notif-filtros
+                d-flex justify-content-between align-items-center">
+      <div class="ir-notif-pestanas
+                  d-flex gap-2 flex-wrap">
+        <button class="ir-notif-pestana is-active" aria-pressed="true" type="button">Todas</button>
+        <button class="ir-notif-pestana" aria-pressed="false" type="button">
+          No leídas (<span class="numero-notif-sin-leer">0</span>)
+        </button>
+        <button class="ir-notif-pestana" aria-pressed="false" type="button">Comentarios</button>
+        <button class="ir-notif-pestana" aria-pressed="false" type="button">Reacciones</button>
+        <button class="ir-notif-pestana" aria-pressed="false" type="button">Hallazgos</button>
+      </div>
+
+      <div class="ir-notif-ordenar d-flex align-items-center gap-2">
+        <label for="ordenar-notif" class="mb-0">Ordenar:</label>
+        <select id="ordenar-notif" class="form-select w-auto">
+          <option value="recientes" selected>Más recientes</option>
+          <option value="antiguas">Más antiguas</option>
+          <option value="no-leidas">No leídas primero</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+
 
 </main>
 

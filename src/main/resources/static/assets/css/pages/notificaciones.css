@@ -11,3 +11,77 @@
     color: var(--ir-verde-oscuro);
     border: 2px solid var(--ir-verde-oscuro);
 }
+
+.ir-notif {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0px 24px;
+}
+
+.ir-notif-encabezado {
+    margin-bottom: 24px;
+}
+
+.ir-notif-titulo {
+    color: var(--ir-verde-oscuro);
+}
+
+.ir-notif-texto {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.ir-notif-btn {
+    background: var(--ir-fondo);
+    color: var(--ir-verde-oscuro);
+    border: 2px solid var(--ir-verde-oscuro);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-weight: 600;
+}
+
+.ir-notif-btn:hover,
+.ir-notif-btn:focus-visible {
+    background: var(--ir-verde-oscuro);
+    color: var(--ir-fondo);
+}
+
+/* Pestañas de filtro: pastillas como los demás botones */
+.ir-notif-filtros {
+    margin-bottom: 24px;
+}
+
+.ir-notif-pestana {
+    background: var(--ir-fondo);
+    color: var(--ir-verde-oscuro);
+    border: 2px solid var(--ir-verde-oscuro);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-weight: 600;
+    transition: background-color 0.15s;
+}
+
+.ir-notif-pestana:hover,
+.ir-notif-pestana:focus-visible {
+    background: var(--ir-crema);
+}
+
+/* La pestaña activa va rellena, al revés de las demás */
+.ir-notif-pestana.is-active,
+.ir-notif-pestana.is-active:hover,
+.ir-notif-pestana.is-active:focus-visible {
+    background: var(--ir-verde-oscuro);
+    color: var(--ir-fondo);
+}
+
+.ir-notif-ordenar label {
+    color: var(--ir-verde-oscuro);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.ir-notif-ordenar .form-select {
+    border: 2px solid var(--ir-verde-oscuro);
+    border-radius: 999px;
+}
