@@ -393,3 +393,22 @@ export const header_registrar = `
     </div>
   </nav>
 `;
+
+// ===== pages/feed.html =====
+export const header_notificaciones = `
+    <!-- ========== TOPBAR ========== -->
+    <header class="ir-topbar">
+      <!-- Solo en celular: abre el sidebar como menú lateral -->
+      <button
+        type="button"
+        class="ir-menu-btn"
+        aria-label="Abrir menú"
+        aria-controls="ir-sidebar"
+        aria-expanded="false"
+      >☰</button>
+      
+      <a class="ir-topbar-link" href="./gestionarPublicaciones.html">Mis publicaciones</a>
+      <a class="ir-topbar-link" href="./perfil.html">Perfil</a>
+      <a class="ir-topbar-link" href="../index.html" data-cerrar-sesion>Log out</a>
+    </header>
+`;
