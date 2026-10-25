@@ -18,76 +18,63 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap"
     rel="stylesheet" />
 
+  <link rel="stylesheet" href="../assets/css/base/contactanos.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../assets/css/base/styles.css" />
   <link rel="stylesheet" href="../assets/css/base/paleta.css" />
   <link rel="stylesheet" href="../assets/css/base/global.css" />
-  <link rel="stylesheet" href="../assets/css/pages/en-construccion.css" />
+  <link rel="stylesheet" href="../assets/css/pages/notificaciones.css">
+
 </head>
 
-<body class="obra">
-  <div class="obra-cinta obra-cinta--arriba" aria-hidden="true"></div>
+<body class="feed-layout">
 
-  <a href="./feed.html">
-    <img src="../assets/img/logo/Logo contexto.svg" alt="Logo de InstaRama" class="obra-logo" />
+<aside class="ir-sidebar" id="ir-sidebar">
+  <!-- Solo en celular, donde el sidebar es un menú lateral -->
+  <button type="button" class="ir-menu-cerrar" aria-label="Cerrar menú">✕</button>
+  <h1 class="ir-sidebar-title">InstaRama</h1>
+  <a href="../pages/feed.html">
+    <img src="../assets/img/logo/Logo contexto.svg" alt="Logo de InstaRama" class="ir-sidebar-logo" />
   </a>
 
-  <main class="obra-tarjeta">
-    <span class="obra-letrero">🚧 En construcción</span>
+  <a class="ir-sidebar-btn" href="../pages/publicacion.html">Crear publicación</a>
+  <a class="ir-sidebar-btn is-active" aria-current="page" href="./notificaciones.html" >Notificaciones</a>
 
-    <!-- Nido con huevos y una campana: los avisos todavía no eclosionan -->
-    <svg class="obra-ilustracion" viewBox="0 0 260 200" role="img"
-      aria-label="Un nido con huevos y una campana colgando de una rama">
-      <!-- Rama -->
-      <path d="M10 30 Q130 10 250 34" fill="none" stroke="var(--ir-verde-oscuro)" stroke-width="6"
-        stroke-linecap="round" />
-      <ellipse cx="60" cy="18" rx="16" ry="7" fill="var(--ir-verde)" transform="rotate(-20 60 18)" />
-      <ellipse cx="205" cy="22" rx="16" ry="7" fill="var(--ir-verde-claro)" transform="rotate(25 205 22)" />
+  <!-- Solo en celular: en escritorio estos enlaces están en la barra de arriba -->
+  <nav class="ir-sidebar-cuenta" aria-label="Cuenta">
+    <a class="ir-sidebar-btn" href="./gestionarPublicaciones.html">Mis publicaciones</a>
+    <a class="ir-sidebar-btn" href="./perfil.html">Perfil</a>
+    <a class="ir-sidebar-btn" href="../index.html" data-cerrar-sesion>Log out</a>
+  </nav>
 
-      <!-- Campana -->
-      <g class="campana">
-        <line x1="130" y1="20" x2="130" y2="44" stroke="var(--ir-verde-oscuro)" stroke-width="3" />
-        <path d="M108 86 Q108 50 130 46 Q152 50 152 86 L158 94 L102 94 Z" fill="var(--ir-verde)"
-          stroke="var(--ir-verde-oscuro)" stroke-width="3" stroke-linejoin="round" />
-        <circle cx="130" cy="100" r="6" fill="var(--ir-verde-oscuro)" />
-      </g>
+  <section class="ir-sidebar-box" aria-labelledby="tendencias">
+    <h2 id="tendencias">Tendencias</h2>
+    <!-- contenido futuro -->
+  </section>
 
-      <!-- Huevos -->
-      <ellipse cx="100" cy="150" rx="15" ry="20" fill="var(--ir-crema)" stroke="var(--ir-verde-claro)"
-        stroke-width="2" />
-      <ellipse class="huevo-inquieto" cx="130" cy="146" rx="16" ry="22" fill="var(--ir-blanco)"
-        stroke="var(--ir-verde-claro)" stroke-width="2" />
-      <ellipse cx="160" cy="150" rx="15" ry="20" fill="var(--ir-crema)" stroke="var(--ir-verde-claro)"
-        stroke-width="2" />
+  <section class="ir-sidebar-box ir-sidebar-box--grow" aria-labelledby="recientes">
+    <h2 id="recientes">Publicaciones recientes</h2>
+    <!-- contenido futuro -->
+  </section>
 
-      <!-- Nido -->
-      <path d="M62 150 Q130 215 198 150 Q190 182 130 186 Q70 182 62 150 Z" fill="var(--ir-verde-oscuro)" />
-      <path d="M70 160 Q130 196 190 160 M80 172 Q130 200 180 172" fill="none" stroke="var(--ir-verde-claro)"
-        stroke-width="2" stroke-linecap="round" />
-    </svg>
+  <a class="ir-sidebar-btn ir-sidebar-contact" href="../pages/contacto.html">Contáctanos</a>
 
-    <h1 class="obra-titulo">Tus avisos aún están empollando</h1>
-    <p class="obra-texto">
-      Estamos construyendo el nido donde llegarán tus notificaciones: comentarios,
-      reacciones y novedades de tus hallazgos. Muy pronto eclosionan. 🐣
-    </p>
+  <div class="ir-sidebar-footer">
+    <a href="../pages/acercaDe.html" class="text-reset text-decoration-none">Acerca de</a>
+    <span>Code&amp;Cell</span>
+    <span>All rights reserved</span>
+    <span>2026</span>
+  </div>
+</aside>
 
-    <ul class="obra-avance" aria-label="Avance de la sección">
-      <li class="hecho">Recolectar ramitas</li>
-      <li class="hecho">Tejer el nido</li>
-      <li class="en-curso">Incubar las notificaciones</li>
-      <li>Avisarte cuando algo pase</li>
-    </ul>
+<main class="ir-main">
 
-    <div class="obra-acciones">
-      <a href="./feed.html" class="obra-btn obra-btn--principal">Volver al feed</a>
-      <a href="./gestionarPublicaciones.html" class="obra-btn obra-btn--secundario">Ver mis publicaciones</a>
-    </div>
-  </main>
-
-  <p class="obra-pie">© 2026 — InstaRama · Code&amp;Cell</p>
-
-  <div class="obra-cinta obra-cinta--abajo" aria-hidden="true"></div>
+</main>
 
   <script src="../assets/js/core/main.js" type="module"></script>
+  <script src="../assets/js/core/render.js" type="module"></script>
+
 </body>
 
 </html>

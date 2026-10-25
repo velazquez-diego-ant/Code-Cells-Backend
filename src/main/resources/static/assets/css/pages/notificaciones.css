@@ -1,0 +1,13 @@
+/* Sin buscador, el primer link empuja a los demás hacia la derecha */
+.ir-topbar .ir-topbar-link:first-of-type {
+    margin-left: auto;
+}
+
+/* Botón de la sección actual: claro con borde, al revés de los demás */
+.ir-sidebar-btn.is-active,
+.ir-sidebar-btn.is-active:hover,
+.ir-sidebar-btn.is-active:focus-visible {
+    background: var(--ir-fondo);
+    color: var(--ir-verde-oscuro);
+    border: 2px solid var(--ir-verde-oscuro);
+}
