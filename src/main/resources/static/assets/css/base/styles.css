@@ -675,6 +675,7 @@ body.feed-layout .ir-modal-titulo {
   font-family: "Montserrat Alternates", "Nunito", sans-serif;
   font-size: 1.25rem;
   padding: 0.6rem 0.75rem;
+  border: 2px solid transparent;
   border-radius: 999px;
   transition: background-color 0.15s;
 }

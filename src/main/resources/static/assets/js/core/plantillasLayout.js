@@ -163,7 +163,6 @@ export const header_gestionarPublicaciones = `
                     <a class="nav-link btn-nav fw-semibold" href="./feed.html">Explorar</a>
                     <a class="nav-link btn-nav" href="../pages/acercaDe.html">Acerca de</a>
                     <a class="nav-link btn-nav" href="../pages/contacto.html">Contacto</a>
-                    <a class="nav-link btn-nav" href="./perfil.html">Perfil</a>
                     <a class="nav-link btn-nav" href="../index.html" data-cerrar-sesion>Cerrar sesión</a>
                 </div>
 
@@ -212,7 +211,7 @@ export const header_login = `
     <!--TODO HEADER -->
     <header class="header-instarama py-3">
         <div class="container-fluid d-flex justify-content-end align-items-center h-100">
-            <a href="registro.html" class="btn-iniciar">Registrarse</a>
+            <a href="registro.html" class="btn-registrar">Registrarse</a>
         </div>
     </header>
 `;
@@ -393,4 +392,23 @@ export const header_registrar = `
       </div>
     </div>
   </nav>
+`;
+
+// ===== pages/feed.html =====
+export const header_notificaciones = `
+    <!-- ========== TOPBAR ========== -->
+    <header class="ir-topbar">
+      <!-- Solo en celular: abre el sidebar como menú lateral -->
+      <button
+        type="button"
+        class="ir-menu-btn"
+        aria-label="Abrir menú"
+        aria-controls="ir-sidebar"
+        aria-expanded="false"
+      >☰</button>
+      
+      <a class="ir-topbar-link" href="./gestionarPublicaciones.html">Mis publicaciones</a>
+      <a class="ir-topbar-link" href="./perfil.html">Perfil</a>
+      <a class="ir-topbar-link" href="../index.html" data-cerrar-sesion>Log out</a>
+    </header>
 `;

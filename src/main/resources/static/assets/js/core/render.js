@@ -9,7 +9,8 @@ import {
     header_login,
     header_registrar,
     header_feed,
-    header_contacto
+    header_contacto,
+    header_notificaciones
 } from "./plantillasLayout.js";
 
 const body = document.querySelector("body");
@@ -87,7 +88,9 @@ const layouts = {
     registro: { header: header_registrar, footer: footer_index },
     feed: { header: header_feed, footer: null, headerDespuesDe: ".ir-sidebar" },
     objetos: { header: null, footer: null },
-    contacto: { header: header_contacto, footer: footerContactoTemplate() }
+    contacto: { header: header_contacto, footer: footerContactoTemplate() },
+    notificaciones: { header: header_notificaciones, footer: null, headerDespuesDe: ".ir-sidebar" }
+
 };
 
 const layoutGeneral = { header: headerTemplate(), footer: footerTemplate() };
