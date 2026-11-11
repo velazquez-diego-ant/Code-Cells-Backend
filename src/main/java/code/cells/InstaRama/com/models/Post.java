@@ -55,8 +55,7 @@ public class Post {
     }
 
 
-    // Relación con kingdom
-//    @ManyToMany
-//    @JoinColumn
-//    private Kingdom kingdom;
+    @ManyToOne
+    @JoinColumn(name = "kingdom_id")
+    private Kingdom kingdom;
 }

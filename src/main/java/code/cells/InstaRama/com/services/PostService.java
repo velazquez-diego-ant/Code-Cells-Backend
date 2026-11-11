@@ -2,8 +2,10 @@ package code.cells.InstaRama.com.services;
 
 import code.cells.InstaRama.com.dtos.PostRequest;
 import code.cells.InstaRama.com.exceptions.ResourceNotFoundException;
+import code.cells.InstaRama.com.models.Kingdom;
 import code.cells.InstaRama.com.models.Post;
 import code.cells.InstaRama.com.models.User;
+import code.cells.InstaRama.com.repository.KingdomRepository;
 import code.cells.InstaRama.com.repository.PostRepository;
 import code.cells.InstaRama.com.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -17,7 +19,7 @@ import java.util.List;
 public class PostService {
     private PostRepository postRepository;
     private UserRepository userRepository;
-//    private KingdomRepository kingdomRepository;
+    private KingdomRepository kingdomRepository;
 
     //Si no hay publicaciones se regresa una lista vacía (no es un error)
     public List<Post> getAllPost(){
@@ -37,13 +39,12 @@ public class PostService {
         return postRepository.findAllByUser_Id(userId);
     }
 
-    // Falta integración con kingdom
     public Post createPostByUser(Long userId, PostRequest postRequest){
         // "Verificar que el usuario exista"
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new ResourceNotFoundException("El User con Id:"+userId+" NO existe")
         );
-        //Creamos la publicacion
+        //Creamos la publicación
         Post post = new Post();
         post.setTitle(postRequest.title());
         post.setPhoto(postRequest.photo());
@@ -52,11 +53,21 @@ public class PostService {
         post.setDatetime(postRequest.datetime() != null ? postRequest.datetime() : new Date());
         // El lado @ManyToOne (Post.user) es el que guarda la FK user_iduser
         post.setUser(user);
-        //Guardamos la publicacion
+        post.setKingdom(resolveKingdom(postRequest));
+        //Guardamos la publicación
         postRepository.save(post);
-        //Actualizar lista publicaciones en los reinos
-        //FALTA
         return post;
+    }
+
+    // Si no mandan reino, se usa "Sin Clasificar / General"
+    private Kingdom resolveKingdom(PostRequest request) {
+        String kingdom = (request.kingdom() == null || request.kingdom().isBlank())
+                ? "Sin Clasificar" : request.kingdom();
+        String subKingdom = (request.subKingdom() == null || request.subKingdom().isBlank())
+                ? "General" : request.subKingdom();
+        return kingdomRepository.findByKingdomAndSubKingdom(kingdom, subKingdom)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No existe el reino: " + kingdom + " / " + subKingdom));
     }
 
     public Post updatePostById(Long postId, PostRequest postRequest){
@@ -66,6 +77,9 @@ public class PostService {
         if (postRequest.photo() != null && postRequest.photo().length > 0) previousPost.setPhoto(postRequest.photo());
         if (postRequest.description() != null && !postRequest.description().isBlank()) previousPost.setDescription(postRequest.description());
         if (postRequest.datetime() != null) previousPost.setDatetime(postRequest.datetime());
+        if (postRequest.kingdom() != null && !postRequest.kingdom().isBlank()) {
+            previousPost.setKingdom(resolveKingdom(postRequest));
+        }
         return postRepository.save(previousPost);
     }
 
