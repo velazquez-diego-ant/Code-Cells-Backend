@@ -147,8 +147,13 @@ const usuario = localStorage.getItem("usuarioActivo") || "Explorador_Botánico";
 
 let publicaciones = [];
 
-// El backend regresa { id, title, photo, description, datetime }; la página pinta otra forma
+// El backend regresa { id, title, photo, description, datetime, kingdom: { kingdom, subKingdom } }; la página pinta otra forma
 function adaptarPost(post) {
+    // Posts anteriores al cambio no tienen reino: se muestran como "Sin Clasificar"
+    const reino = post.kingdom?.kingdom || "Sin Clasificar";
+    // Solo Animalia usa subgrupo (Vertebrado / Invertebrado); en los demás reinos es "General"
+    const sub = reino === "Animalia" ? (post.kingdom?.subKingdom || "") : "";
+
     return {
         id: post.id,
         usuario,
@@ -156,9 +161,9 @@ function adaptarPost(post) {
         descripcion: post.description,
         imagen: post.photo ? `data:image/jpeg;base64,${post.photo}` : "../assets/img/logo/Logo contexto.svg",
         fecha: new Date(post.datetime).toISOString().slice(0, 10),
-        // El backend todavía no guarda reino, especie, grupo ni ubicación
-        reino: "Sin Clasificar",
-        subcategoria: "",
+        reino,
+        subcategoria: sub === "Sin subclasificación" ? "" : sub,
+        // El backend todavía no guarda especie, grupo ni ubicación
         grupo: "",
         especie: "",
         ubicacion: "",
@@ -876,7 +881,12 @@ formEditar.addEventListener("submit", async (e) => {
     if (!valido) return;
 
     // Guardar en el backend (solo conoce título, descripción y foto)
-    const cambios = { title: titulo, description: descripcion };
+    const cambios = {
+        title: titulo,
+        description: descripcion,
+        kingdom: reino,
+        subKingdom: reino === "Animalia" ? subcategoria : "General",
+    };
     btnGuardarEditar.disabled = true;
     editarError.classList.add("d-none");
     try {

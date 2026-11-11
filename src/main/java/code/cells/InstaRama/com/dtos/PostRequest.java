@@ -18,6 +18,9 @@ public record PostRequest(
         @NotBlank(message = "La descripción es obligatoria")
         String description,
 
-        Date datetime
+        Date datetime,
+
+        String kingdom,
+        String subKingdom
 ) {
 }
