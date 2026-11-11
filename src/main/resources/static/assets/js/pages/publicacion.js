@@ -205,6 +205,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         //Convertimos la imagen a un array de bytes
                         const fotobase64 = await convertImageToBytes(inputArchivo)
 
+                        const kingdom = selectCategoria.value;
+                        const subKingdom = kingdom === 'Animalia' ? selectSubCategoria.value : 'General';
                         // Construcción del objeto JS
                         const nuevaPublicacion = {
                             // id: crypto.randomUUID(), // Genera un ID único
@@ -216,8 +218,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                 tipo: inputArchivo.files[0]?.type || null
                             },
                             photo: fotobase64, // Array de bytes de la imagen
-                            categoria: selectCategoria.value,
-                            subcategoria: selectSubCategoria.value || null,
+                            kingdom: kingdom,
+                            subKingdom: subKingdom,
                             description: textarea.value.trim(),
                             datetime: new Date().toISOString(), // Formato estándar "YYYY-MM-DDTHH:mm:ss.sssZ"
                             comentarios: []

@@ -8,7 +8,7 @@ const USER_ID_PRUEBA = ensureLoggedIn(localStorage.getItem("usuarioId"));
 
 let publicaciones = [];
 
-// El backend regresa { id, title, photo, description, datetime, userId, userName }; las cards usan otra forma
+// El backend regresa { id, title, photo, description, datetime, userId, userName, kingdom }; las cards usan otra forma
 function adaptarPost(post) {
   return {
     id: post.id,
@@ -17,16 +17,24 @@ function adaptarPost(post) {
     titulo: post.title,
     descripcion: post.description,
     imagen: post.photo
-      ? `data:image/jpeg;base64,${post.photo}`
-      : "../assets/img/logo/Logo contexto.svg",
+        ? `data:image/jpeg;base64,${post.photo}`
+        : "../assets/img/logo/Logo contexto.svg",
     fecha_observacion: new Date(post.datetime).toISOString().slice(0, 10),
-    // El backend todavía no guarda reino, categoría ni los datos de la observación
-    id_reino: null,
+    reino: post.kingdom?.kingdom || "Sin Clasificar",
+    subcategoria:
+        post.kingdom?.kingdom === "Animalia" &&
+        post.kingdom.subKingdom !== "Sin subclasificación"
+            ? post.kingdom.subKingdom
+            : "",
+    id_reino:
+        reinos.find((reino) => reino.nombre === post.kingdom?.kingdom)?.id_reino ?? null,
+    // El backend todavía no guarda categoría (grupo) ni los datos de la observación
     id_categoria: null,
     likes: 0,
     comentarios: [],
   };
 }
+
 
 function limpiarPublicaciones() {
   const lista = document.getElementById("lista-publicaciones");
@@ -123,6 +131,8 @@ function abrirDetalle(publicacion, contador) {
     publicacion.descripcion;
 
   const datos = [
+    ["Reino", publicacion.reino],
+    ["Grupo", publicacion.subcategoria || "—"],
     ["Nombre común", publicacion.nombre_comun ?? "No identificado"],
     [
       "Nombre científico",
