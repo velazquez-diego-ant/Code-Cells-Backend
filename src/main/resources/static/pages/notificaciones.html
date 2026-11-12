@@ -108,6 +108,56 @@
         </select>
       </div>
     </div>
+
+    <!-- Aviso mientras no hay notificaciones: los avisos se están empollando -->
+    <div class="ir-notif-nido" role="status">
+      <span class="ir-notif-nido-letrero">🚧 En construcción</span>
+
+      <!-- Nido con huevos y una campana: los avisos todavía no eclosionan -->
+      <svg class="ir-notif-nido-ilustracion" viewBox="0 0 260 200" role="img"
+           aria-label="Un nido con huevos y una campana colgando de una rama">
+        <!-- Rama -->
+        <path class="nido-rama" d="M10 30 Q130 10 250 34" fill="none" stroke-width="6" stroke-linecap="round" />
+        <ellipse class="nido-hoja" cx="60" cy="18" rx="16" ry="7" transform="rotate(-20 60 18)" />
+        <ellipse class="nido-hoja nido-hoja--clara" cx="205" cy="22" rx="16" ry="7" transform="rotate(25 205 22)" />
+
+        <!-- Campana -->
+        <g class="nido-campana">
+          <line class="nido-trazo" x1="130" y1="20" x2="130" y2="44" stroke-width="3" />
+          <path class="nido-campana-cuerpo" d="M108 86 Q108 50 130 46 Q152 50 152 86 L158 94 L102 94 Z"
+                stroke-width="3" stroke-linejoin="round" />
+          <circle class="nido-relleno-oscuro" cx="130" cy="100" r="6" />
+        </g>
+
+        <!-- Huevos -->
+        <ellipse class="nido-huevo" cx="100" cy="150" rx="15" ry="20" stroke-width="2" />
+        <ellipse class="nido-huevo nido-huevo--inquieto" cx="130" cy="146" rx="16" ry="22" stroke-width="2" />
+        <ellipse class="nido-huevo" cx="160" cy="150" rx="15" ry="20" stroke-width="2" />
+
+        <!-- Nido -->
+        <path class="nido-relleno-oscuro" d="M62 150 Q130 215 198 150 Q190 182 130 186 Q70 182 62 150 Z" />
+        <path class="nido-tejido" d="M70 160 Q130 196 190 160 M80 172 Q130 200 180 172" fill="none"
+              stroke-width="2" stroke-linecap="round" />
+      </svg>
+
+      <h2 class="ir-notif-nido-titulo">Tus avisos aún están empollando</h2>
+      <p class="ir-notif-nido-texto">
+        Estamos construyendo el nido donde llegarán tus notificaciones: comentarios,
+        reacciones y novedades de tus hallazgos. Muy pronto eclosionan. 🐣
+      </p>
+
+      <ul class="ir-notif-nido-avance" aria-label="Avance de la sección">
+        <li class="hecho">Recolectar ramitas</li>
+        <li class="hecho">Tejer el nido</li>
+        <li class="en-curso">Incubar las notificaciones</li>
+        <li>Avisarte cuando algo pase</li>
+      </ul>
+
+      <div class="ir-notif-nido-acciones">
+        <a href="./feed.html" class="ir-notif-nido-btn ir-notif-nido-btn--principal">Volver al feed</a>
+        <a href="./gestionarPublicaciones.html" class="ir-notif-nido-btn">Ver mis publicaciones</a>
+      </div>
+    </div>
   </section>
 
 
