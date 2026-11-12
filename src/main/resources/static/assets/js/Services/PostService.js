@@ -1,3 +1,5 @@
+import { cerrarSesionInvalida } from "../core/utils.js";
+
 const BASE_URL = "/api";
 
 
@@ -20,6 +22,8 @@ export const getpostById = async function (id) {
 //Lanza el error para que la página pueda avisarle al usuario
 export const getPostsByUserId = async function (userId) {
     const response = await fetch(`${BASE_URL}/user/${userId}/posts`);
+    // 404 aquí solo significa que el usuario de la sesión ya no existe
+    if (response.status === 404) cerrarSesionInvalida();
     if (!response.ok) throw new Error("Error en la peticion: " + response.status);
     return response.json();
 }
@@ -32,6 +36,13 @@ export const createPost = async function (userId, postObject) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(postObject),
     });
+    if (response.status === 404) {
+        // Puede ser un usuario que ya no existe (sesión vieja) o un reino que no está en la BD
+        const usuario = await fetch(`/api/users/${userId}`);
+        if (usuario.status === 404) cerrarSesionInvalida();
+        const problema = await response.json().catch(() => null);
+        throw new Error(problema?.detail || "Error en la peticion: 404");
+    }
     if (!response.ok) throw new Error("Error en la peticion: " + response.status);
     return response.json();
 }
