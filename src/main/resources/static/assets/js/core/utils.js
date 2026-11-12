@@ -36,6 +36,12 @@ const CLAVES_SESION = ["sesionActiva", "usuarioId", "usuarioActivo", "nombreUsua
  * Borra la sesión del localStorage y manda al inicio.
  * Las preferencias (tema, vista) se conservan porque no son de la sesión.
  */
+export function cerrarSesionInvalida() {
+    // El usuario guardado ya no existe en la BD (p. ej. se reinició con ddl-auto=create)
+    CLAVES_SESION.forEach((clave) => localStorage.removeItem(clave));
+    window.location.replace("/pages/login.html");
+}
+
 export function cerrarSesion() {
     CLAVES_SESION.forEach((clave) => localStorage.removeItem(clave));
     window.location.replace("/index.html");
