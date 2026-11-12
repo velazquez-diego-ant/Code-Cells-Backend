@@ -85,3 +85,224 @@
     border: 2px solid var(--ir-verde-oscuro);
     border-radius: 999px;
 }
+
+/* =====================================================
+   AVISOS EMPOLLANDO
+   Se muestra dentro de notificaciones mientras no hay avisos.
+   Solo usa las variables de paleta.css; en modo oscuro
+   (data-tema="oscuro" en <html>) cambian las variables locales.
+   ===================================================== */
+.ir-notif-nido {
+    /* Colores locales: el modo oscuro solo los reasigna */
+    --nido-superficie: var(--ir-blanco);
+    --nido-borde: var(--ir-verde-claro);
+    --nido-texto: var(--ir-verde-oscuro);
+    --nido-suave: var(--ir-crema);
+    --nido-acento: var(--ir-verde);
+    --nido-oscuro: var(--ir-verde-oscuro);
+    --nido-huevo: var(--ir-crema);
+    --nido-huevo-claro: var(--ir-blanco);
+
+    margin: 0 auto 32px;
+    padding: 2rem 1.5rem;
+    max-width: 560px;
+    border-radius: 24px;
+    background: var(--nido-superficie);
+    border: 2px solid var(--nido-borde);
+    box-shadow: 0 12px 30px color-mix(in srgb, var(--ir-verde-oscuro) 18%, transparent);
+    color: var(--nido-texto);
+    font-family: "Nunito", sans-serif;
+    text-align: center;
+}
+
+.ir-notif-nido-letrero {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border-radius: 8px;
+    background: var(--nido-oscuro);
+    color: var(--ir-crema);
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transform: rotate(-3deg);
+}
+
+.ir-notif-nido-ilustracion {
+    display: block;
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    margin: 1.25rem auto 0.5rem;
+}
+
+/* Piezas del dibujo */
+.nido-rama,
+.nido-trazo { stroke: var(--nido-oscuro); }
+.nido-hoja { fill: var(--nido-acento); }
+.nido-hoja--clara { fill: var(--ir-verde-claro); }
+.nido-campana-cuerpo { fill: var(--nido-acento); stroke: var(--nido-oscuro); }
+.nido-relleno-oscuro { fill: var(--nido-oscuro); }
+.nido-huevo { fill: var(--nido-huevo); stroke: var(--ir-verde-claro); }
+.nido-huevo--inquieto { fill: var(--nido-huevo-claro); }
+.nido-tejido { stroke: var(--ir-verde-claro); }
+
+.ir-notif-nido-titulo {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin: 0.5rem 0;
+    color: var(--nido-texto);
+}
+
+.ir-notif-nido-texto {
+    margin: 0 auto 1.25rem;
+    max-width: 44ch;
+    line-height: 1.5;
+}
+
+/* Lista de avance */
+.ir-notif-nido-avance {
+    list-style: none;
+    margin: 0 auto 1.5rem;
+    padding: 1rem 1.25rem;
+    max-width: 360px;
+    border-radius: 16px;
+    background: var(--nido-suave);
+    text-align: left;
+}
+
+.ir-notif-nido-avance li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.3rem 0;
+}
+
+.ir-notif-nido-avance li::before {
+    content: "";
+    flex: 0 0 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--nido-acento);
+}
+
+.ir-notif-nido-avance .hecho::before { background: var(--nido-acento); }
+.ir-notif-nido-avance .hecho { text-decoration: line-through; opacity: 0.7; }
+.ir-notif-nido-avance .en-curso { font-weight: 700; }
+.ir-notif-nido-avance .en-curso::before {
+    background: var(--ir-verde-claro);
+    animation: nido-latido 1.4s ease-in-out infinite;
+}
+
+/* Botones: pastillas como las del resto de notificaciones */
+.ir-notif-nido-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.ir-notif-nido-btn {
+    display: inline-block;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    border: 2px solid var(--nido-oscuro);
+    background: transparent;
+    color: var(--nido-texto);
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.ir-notif-nido-btn:hover,
+.ir-notif-nido-btn:focus-visible {
+    background: var(--nido-suave);
+    color: var(--nido-texto);
+}
+
+.ir-notif-nido-btn--principal {
+    background: var(--nido-oscuro);
+    color: var(--ir-fondo);
+}
+
+.ir-notif-nido-btn--principal:hover,
+.ir-notif-nido-btn--principal:focus-visible {
+    background: var(--nido-acento);
+    border-color: var(--nido-acento);
+    color: var(--ir-fondo);
+}
+
+/* Animaciones: campana que se mece y huevo que tiembla */
+.nido-campana {
+    transform-box: fill-box;
+    transform-origin: 50% 0;
+    animation: nido-mecer 2.4s ease-in-out infinite;
+}
+
+.nido-huevo--inquieto {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: nido-temblar 2.8s ease-in-out infinite;
+}
+
+@keyframes nido-mecer {
+    0%, 100% { transform: rotate(-6deg); }
+    50% { transform: rotate(6deg); }
+}
+
+@keyframes nido-temblar {
+    0%, 70%, 100% { transform: rotate(0); }
+    75% { transform: rotate(-8deg); }
+    80% { transform: rotate(8deg); }
+    85% { transform: rotate(-5deg); }
+    90% { transform: rotate(4deg); }
+}
+
+@keyframes nido-latido {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nido-campana,
+    .nido-huevo--inquieto,
+    .ir-notif-nido-avance .en-curso::before {
+        animation: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .ir-notif-nido {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Modo oscuro: mismos tonos que gestionarPublicaciones y perfil */
+:root[data-tema="oscuro"] .ir-notif-nido {
+    --nido-superficie: #283225;
+    --nido-borde: #476B49;
+    --nido-texto: #EDF1D6;
+    --nido-suave: #20291E;
+    --nido-acento: #9DC08B;
+    --nido-oscuro: #161C15;
+    --nido-huevo: #EDF1D6;
+    --nido-huevo-claro: #F9FBF2;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+:root[data-tema="oscuro"] .ir-notif-nido-btn {
+    border-color: var(--nido-acento);
+}
+
+:root[data-tema="oscuro"] .ir-notif-nido-btn--principal {
+    background: var(--nido-acento);
+    color: #161C15;
+}
+
+:root[data-tema="oscuro"] .ir-notif-nido-btn--principal:hover,
+:root[data-tema="oscuro"] .ir-notif-nido-btn--principal:focus-visible {
+    background: #F9FBF2;
+    border-color: #F9FBF2;
+}
